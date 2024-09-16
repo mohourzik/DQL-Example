@@ -16,5 +16,16 @@ class Agent():
         self.action_space = [i for i in range(n_actions)]
         self.Q = DeepQNetwork(n_inputs, n_actions)
         self.batch_size = batch_size
+        self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
+    def choose_action(self, obs):
+        if np.random.random() > self.eps:
+            # greedy selection action
+            state = torch.tensor(obs, dtype = torch.float32).to(self.device)
+            actions = self.Q(state)
+            action = torch.argmax(actions).item()
+        else:
+            action = np.random.choice(self.action_space)
+        return action
+    
     
