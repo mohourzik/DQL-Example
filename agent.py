@@ -25,7 +25,7 @@ class Agent():
         self.action_memory      = np.zeros(self.mem_size, dtype = np.int32)
         self.reward_memory      = np.zeros(self.mem_size, dtype = np.float32)
         self.terminal_memory    = np.zeros(self.mem_size, dtype = np.bool_)
-        
+
 
     def choose_action(self, obs):
         if np.random.random() > self.eps:
@@ -37,5 +37,15 @@ class Agent():
             action = np.random.choice(self.action_space)
         return action
     
-    def store_transition(self, state, action, reward, state_):
-        pass
+    def store_transition(self, state, action, reward, state_, done):
+        index = self.mem_count % self.mem_size
+        
+        self.state_memory[index] = state
+        self.new_state_memory[index] = state_
+        self.action_memory[index] = action
+        self.reward_memory[index] = reward
+        self.terminal_memory[index] = done
+
+        self.mem_count += 1
+
+    
