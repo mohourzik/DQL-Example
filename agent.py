@@ -6,7 +6,7 @@ import torch.nn.functional as F
 
 class Agent():
     def __init__(self, n_inputs, n_actions, lr = 3e-4, gamma = 0.95,
-                eps = 1.0, eps_dec = 5e-4, eps_end = 0.01, batch_size = 64, max_mem_size = 100000):
+                eps = 1.0, eps_dec = 1e-4, eps_end = 0.01, batch_size = 64, max_mem_size = 100000):
 
         self.gamma = gamma
         self.eps = eps
@@ -18,6 +18,7 @@ class Agent():
         self.Q = DeepQNetwork(n_inputs, n_actions)
         self.batch_size = batch_size
         self.device = 'cuda' if torch.cuda.is_available() else 'cpu'
+        self.Q.to(self.device)
         self.opimizer = optim.Adam(self.Q.parameters(), lr = self.lr)
 
         self.mem_size = max_mem_size

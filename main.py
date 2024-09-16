@@ -1,6 +1,7 @@
 import gym
 from agent import Agent
 import numpy as np
+import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
     ENV_NAME = "LunarLander-v2"
@@ -30,3 +31,6 @@ if __name__ == "__main__":
         avg_score = np.mean(scores[-100:])
 
         print(f"episode = {i}, score = {score:.2f}, avg_score = {avg_score:.2f}, eps = {agent.eps:.2f}")
+    plt.plot(scores)
+    plt.plot(epsilons)
+    plt.show()
