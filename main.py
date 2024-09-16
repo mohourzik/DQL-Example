@@ -13,7 +13,7 @@ if __name__ == "__main__":
     scores, epsilons= [], []
     agent = Agent(n_inputs, n_actions)
 
-    n_games = 500
+    n_games = 200
     for i in range(n_games):
         state = env.reset()[0]
         score = 0

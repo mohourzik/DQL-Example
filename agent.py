@@ -6,7 +6,7 @@ import torch.nn.functional as F
 
 class Agent():
     def __init__(self, n_inputs, n_actions, lr = 3e-4, gamma = 0.95,
-                eps = 1.0, eps_dec = 1e-4, eps_end = 0.01, batch_size = 64, max_mem_size = 100000):
+                eps = 1.0, eps_dec = 1e-4, eps_end = 0.01, batch_size = 64, max_mem_size = 10000):
 
         self.gamma = gamma
         self.eps = eps
